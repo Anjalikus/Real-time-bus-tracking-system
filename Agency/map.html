@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps Example with Bus Icons</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <style>
+    #map {
+      height: 450px;
+      width: 100%;
+    }
+  </style>
+  
+  <style>
+    /* body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+
+  .ticket {
+    background-image: url("/images/bus3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 700px;
+    position: relative;
+    height: 700px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    /* padding-left: 160px; */
+    margin-left: 60%;
+  }
+
+  .ticket p{
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  </style>
+
+</head>
+<body>
+  <nav class="navbar">
+
+    <img src="/images/logo.jpg" class="logo"></img>
+    <ul class="nav-links">
+    
+      <li class="active  "><a href="/index.html">Home</a></li>
+    
+    <li><a href="/route.html">Routes</a></li>
+    <li><a href="/bus_running.html">Bus running</a></li>
+    
+    <li><a href="https://public.tableau.com/app/profile/divyanshu.singh4340/viz/BusYatriRevenueAnalysis/Dashboard1?publish=yes" target="_blank">Revenue Analysis</a></li>
+    <li><a href="/prediction.html">Prediction</a></li>
+    <li><a href="/pass.html">Passes-Generated</a></li>
+    <li><a  href="/ticket.html">Ticket generated</a></li>
+    
+    </ul>
+    
+    </nav>
+
+  <section class="map" id="map">
+
+    <div class="container-fluid aos-init aos-animate" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2 class="text-center mb-4">Map</h2>
+        </div>
+        <div class="venue-map">
+            <div id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230660.4518806411!2d81.6367714095387!3d25.402482058939768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398534c9b20bd49f%3A0xa2237856ad4041a!2sPrayagraj%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1697043240166!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+    </div>
+
+  </section>
+
+  <script>
+    function initMap() {
+      var mapOptions = {
+        center: { lat: 25.402482058939768, lng: 81.6367714095387 }, // Centered around Prayagraj, Uttar Pradesh
+        zoom: 10 // Initial zoom level
+      };
+
+      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      // Array of locations with bus icons
+      var locations = [
+        { lat: 25.42, lng: 81.63, title: 'Location 1' },
+        { lat: 25.45, lng: 81.65, title: 'Location 2' },
+        { lat: 25.41, lng: 81.60, title: 'Location 3' },
+        { lat: 25.39, lng: 81.68, title: 'Location 4' },
+        { lat: 25.37, lng: 81.64, title: 'Location 5' },
+        { lat: 25.47, lng: 81.65, title: 'Location 6' },
+        { lat: 25.49, lng: 81.66, title: 'Location 7' },
+        { lat: 25.50, lng: 81.67, title: 'Location 8' },
+        { lat: 25.52, lng: 81.69, title: 'Location 9' },
+        { lat: 25.36, lng: 81.70, title: 'Location 10' },
+        { lat: 25.51, lng: 81.71, title: 'Location 11' },
+        { lat: 25.40, lng: 81.72, title: 'Location 12' },
+        { lat: 25.46, lng: 81.73, title: 'Location 13' },
+        { lat: 25.64, lng: 81.74, title: 'Location 14' },
+        { lat: 25.56, lng: 81.75, title: 'Location 15' },
+        { lat: 25.43, lng: 81.61, title: 'Location 16' }
+      ];
+
+      // Add markers for each location
+      locations.forEach(function(location) {
+        var marker = new google.maps.Marker({
+          position: { lat: location.lat, lng: location.lng },
+          map: map,
+          icon: {
+            url: 'https://maps.google.com/mapfiles/kml/shapes/bus.png', // Default Google bus icon
+            scaledSize: new google.maps.Size(15, 15) // Adjust the size as needed
+          },
+          title: location.title
+        });
+      });
+    }
+  </script>
+
+  <!-- Load Google Maps API using the async attribute -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2wRzE2MN8sZtfU873Pn4vpdwtYlrWyCA&callback=initMap">
+
+(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "AIzaSyB2wRzE2MN8sZtfU873Pn4vpdwtYlrWyCA",
+    v: "weekly",
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  });
+  </script>
+
+  
+
+
+ 
+
+ <!-- <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script> -->
+</body>
+</html>
